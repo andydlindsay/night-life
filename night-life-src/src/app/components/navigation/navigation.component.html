@@ -1,0 +1,37 @@
+<md-toolbar color="primary">
+  <h1 class="title-bar title-font">{{ title }}</h1>
+  <span class="app-toolbar-filler"></span>
+  <div *ngIf="!isLoggedIn()">
+    <button md-button (click)="onLoginClick()">Sign In / Register</button>
+  </div>
+  <div *ngIf="isLoggedIn()">
+    <button md-button (click)="onLogoutClick()">Logout</button>
+  </div>
+</md-toolbar>
+<md-sidenav-container id="app-background">
+  <md-sidenav #start mode="side">
+    <md-toolbar color="accent">Navigation</md-toolbar>
+    <div class="app-sidenav">
+      <md-nav-list>
+        <a md-list-item routerLink="/" (click)="start.close()">Home</a>
+        <a *ngIf="isLoggedIn()" md-list-item routerLink="/dashboard" (click)="start.close()">Profile</a>
+      </md-nav-list>
+      <hr>
+      <md-nav-list *ngIf="!isLoggedIn()">
+        <button md-button class="nav-list-button" (click)="start.close(); onLoginClick()">Sign In / Register</button>
+      </md-nav-list>      
+      <button md-button *ngIf="isLoggedIn()" (click)="start.close(); onLogoutClick()" class="nav-list-button">Sign Out</button>      
+      <button md-button (click)="start.close()" class="nav-list-button">Close Menu</button>
+    </div>
+  </md-sidenav>
+  <md-toolbar>
+    <button md-icon-button (click)="start.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+    <p class="subtitle title-font">{{ subtitle }}</p>
+  </md-toolbar>
+  <div class="app-content">
+    <flash-messages></flash-messages>
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-container>
