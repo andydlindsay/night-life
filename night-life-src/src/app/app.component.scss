@@ -1,7 +1,28 @@
 // variables
 $title: 'Handlee', cursive;
+$body: 'Fira Sans', sans-serif;
+
+/* elements */
+button,
+form {
+    font-family: $body !important;
+    font-size: 1.3em !important;
+}
 
 // classes
+.title2size {
+    font-size: 1.6em !important;
+}
+
+.mat-sidenav {
+    font-family: $body !important;
+}
+
 .title-font {
-    font-family: $title;
+    font-family: $title !important;
+}
+
+.mat-card {
+    font-family: $body !important;
+    margin: 0;
 }

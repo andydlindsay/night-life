@@ -5,14 +5,14 @@
     <button md-button (click)="onLoginClick()">Sign In / Register</button>
   </div>
   <div *ngIf="isLoggedIn()">
-    <button md-button (click)="onLogoutClick()">Logout</button>
+    <button md-button (click)="onLogoutClick()">Sign Out</button>
   </div>
 </md-toolbar>
 <md-sidenav-container id="app-background">
   <md-sidenav #start mode="side">
-    <md-toolbar color="accent">Navigation</md-toolbar>
+    <md-toolbar color="accent" class="title2size">Navigation</md-toolbar>
     <div class="app-sidenav">
-      <md-nav-list>
+      <md-nav-list class="title-font">
         <a md-list-item routerLink="/" (click)="start.close()">Home</a>
         <a *ngIf="isLoggedIn()" md-list-item routerLink="/dashboard" (click)="start.close()">Profile</a>
       </md-nav-list>

@@ -1,8 +1,80 @@
 <md-card>
-  <md-toolbar>Welcome</md-toolbar>
   <md-card-content>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut luctus lacus. Aliquam vel justo eget dolor molestie interdum sed nec ligula. Curabitur vitae leo aliquet, euismod risus eget, lobortis tortor. Sed auctor tincidunt urna, eget commodo nulla elementum ut. Pellentesque nec enim interdum, lacinia arcu hendrerit, lobortis erat. Curabitur gravida bibendum leo ut sodales. Sed molestie urna id ultricies sagittis. Suspendisse interdum, urna ut egestas mattis, nulla urna pretium nunc, non commodo mauris lorem eget nisi. Sed venenatis sem elit, eget blandit enim rutrum ac. In ultrices ut lorem sed blandit. Suspendisse congue diam at ligula venenatis suscipit.</p>
-    <p>Fusce in tellus nibh. Aliquam suscipit justo congue odio feugiat iaculis. Vestibulum erat justo, gravida in sapien eget, aliquet porta lectus. Praesent blandit suscipit lorem at posuere. Curabitur nec enim nisi. Praesent a magna maximus, iaculis sem eget, porta ipsum. Suspendisse facilisis erat id lectus suscipit ullamcorper. Vivamus hendrerit hendrerit augue at posuere. Donec fringilla tristique ante at accumsan. Praesent placerat ornare orci sed tincidunt. Nam non neque ut nunc cursus vestibulum. Suspendisse sed bibendum nulla, et rhoncus lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <h3>Curabitur nec enim nisi!</h3>
-  </md-card-content>
+    <form [formGroup]="searchForm">
+      <md-input-container>
+        <input type="search" required mdInput placeholder="Enter a City or Postal Code" formControlName="search" id="search">
+        <md-hint *ngIf="formErrors.search">{{ formErrors.search }}</md-hint>
+        
+      </md-input-container>
+      <button type="submit" md-raised-button color="accent" (click)="onSearchSubmit()"><md-icon>search</md-icon></button>
+    </form>
+  </md-card-content> 
 </md-card>
+
+<!-- display if search is not or has not been done -->
+<div *ngIf="searchResults == undefined && searching == false">
+  <md-card>
+    <md-card-content>
+      <h2>Enter a city or postal code above to get started!</h2>
+    </md-card-content>
+  </md-card>
+</div>
+
+<!-- display if currently searching -->
+<div *ngIf="searching == true">
+  <md-card>
+    <md-card-content>
+      <md-spinner></md-spinner>
+    </md-card-content>
+  </md-card>
+</div>
+  
+
+<!-- display if search has been done -->
+<div *ngIf="searchResults != undefined" id="results">
+
+    <!-- display if results returned is 0 -->
+    <md-card *ngIf="searchResults.length == 0">
+      <md-card-content>
+          <h2>No nearby bars! Sorry.</h2>
+      </md-card-content>
+    </md-card>
+
+    <!-- display search results -->
+    <div *ngFor="let result of searchResults">
+      <md-card>
+        <!--<md-card-title>{{ result.name }}</md-card-title>-->
+        <md-card-content>
+          <div class="flex-container overflow-hidden height200">
+            <div id="search-image">
+              <img class="search-image" src="{{ result.image_url}}">
+            </div>
+            <div id="search-info">
+              <a href="{{ result.url }}" target="_blank"><h2 class="info-title">{{ result.name }}</h2></a>
+              <h3>{{ result.display_phone }}</h3>
+              <h3>{{ result.location.address1 }}, {{ result.location.city }}, {{ result.location.state }}</h3>
+              <h3>Rating: {{ result.rating }} / 5</h3>
+            </div>
+            <div id="people-going">
+              <h2>0 Going</h2>
+              <button md-raised-button color="primary">I'm Going</button>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+
+    <!-- display page navigation -->
+    <md-card *ngIf="totalResults > 10 && searchResults.length > 0">
+      <md-card-content>
+        <div class="flex-container">
+          <span class="app-toolbar-filler"></span>
+          <button md-button [disabled]="isFirstPage()" (click)="prevPage()"><md-icon>navigate_before</md-icon>Prev Page</button>
+          <h2>{{ currentPage }}</h2>
+          <button md-button [disabled]="isLastPage()" (click)="nextPage()">Next Page<md-icon>navigate_next</md-icon></button>
+          <span class="app-toolbar-filler"></span>
+        </div>
+      </md-card-content>
+    </md-card>
+
+</div>

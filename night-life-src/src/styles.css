@@ -3,13 +3,13 @@
 
 /* elements */
 body {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Handlee', cursive;
     margin: 0;
 }
 
 md-card-content {
     margin: auto;
-    padding: 16px 16px 0px 16px;
+    padding: 0px 0px 0px 0px;
 }
 
 form {
@@ -22,7 +22,7 @@ md-toolbar a {
 }
 
 md-sidenav-container {
-    min-height: 92vh;
+    min-height: 93vh;
 }
 
 /* classes */
@@ -82,8 +82,9 @@ md-sidenav-container {
 }
 
 .mat-input-container {
-    width: 100%;
+    width: 87%;
     margin-top: 5px;
+    margin-right: 3%;
 }
 
 .alert-failure {
@@ -121,4 +122,35 @@ md-sidenav-container {
     padding-left: 16px;
 }
 
+.search-image {
+    width: 90%;
+    /*height: 200px;*/
+    opacity: 0.9;
+    /*margin: auto;*/
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.height200 {
+    height: 140px;
+}
+
+.info-title {
+    margin-top: 2px;
+    text-decoration: underline;
+}
+
 /* id's */
+#search-image {
+    flex: 1;
+}
+
+#search-info {
+    flex: 2;
+}
+
+#people-going {
+    flex: 1;
+}

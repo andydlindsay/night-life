@@ -11,6 +11,7 @@ import 'hammerjs';
 import 'auth0-js';
 
 import { AuthService } from './services/auth.service';
+import { YelpService } from './services/yelp.service';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     FlexLayoutModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    YelpService
   ],
   bootstrap: [
     AppComponent

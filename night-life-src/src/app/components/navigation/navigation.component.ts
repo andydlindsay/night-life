@@ -23,7 +23,6 @@ export class NavigationComponent implements OnInit {
   }
 
   isLoggedIn() {
-    console.log('isLoggedIn:', this.auth.isAuthenticated());
     return this.auth.isAuthenticated();
   }
 
