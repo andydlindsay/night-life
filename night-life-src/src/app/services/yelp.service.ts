@@ -17,4 +17,20 @@ export class YelpService {
       .map(res => res.json());
   }
 
+  public addBar(businessId) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+
+
+  }
+
+  public setSearchTerm(searchTerm) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+
+
+  }
+
 }

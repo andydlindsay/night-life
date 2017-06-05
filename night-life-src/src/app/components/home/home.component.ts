@@ -3,18 +3,21 @@ import { Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YelpService } from '../../services/yelp.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
     private titleService: Title,
-    private yelp: YelpService
+    private yelp: YelpService,
+    private auth: AuthService
   ) { }
 
   searchTerm: string;
@@ -116,9 +119,35 @@ export class HomeComponent implements OnInit {
     // check if search form is valid
     if (this.searchForm.valid) {
       this.searchTerm = this.searchForm.value.search;
+      // check if user is logged in
+      if (this.isLoggedIn()) {
+        // add search term to user in database
+
+
+
+      }
       this.currentPage = 1;
       this.updateSearchResults();
     }
+  }
+
+  onGoingClick(businessId) {
+    console.log('you are going to ' + businessId);
+    // check if user is logged in
+    if (this.isLoggedIn()) {
+      // update database
+      
+
+
+    } else {
+      // redirect to login page
+      this.auth.login();
+    }
+
+  }
+
+  isLoggedIn() {
+    return this.auth.isAuthenticated();
   }
 
 }

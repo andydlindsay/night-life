@@ -57,7 +57,7 @@
             </div>
             <div id="people-going">
               <h2>0 Going</h2>
-              <button md-raised-button color="primary">I'm Going</button>
+              <button md-raised-button color="primary" (click)="onGoingClick(result.id)">I'm Going</button>
             </div>
           </div>
         </md-card-content>
@@ -69,9 +69,13 @@
       <md-card-content>
         <div class="flex-container">
           <span class="app-toolbar-filler"></span>
-          <button md-button [disabled]="isFirstPage()" (click)="prevPage()"><md-icon>navigate_before</md-icon>Prev Page</button>
-          <h2>{{ currentPage }}</h2>
-          <button md-button [disabled]="isLastPage()" (click)="nextPage()">Next Page<md-icon>navigate_next</md-icon></button>
+          <button md-button [disabled]="isFirstPage()" (click)="prevPage()">
+            <md-icon>navigate_before</md-icon>Prev Page
+          </button>
+          <h2>&nbsp;{{ currentPage }}&nbsp;</h2>
+          <button md-button [disabled]="isLastPage()" (click)="nextPage()">
+            Next Page<md-icon>navigate_next</md-icon>
+          </button>
           <span class="app-toolbar-filler"></span>
         </div>
       </md-card-content>
