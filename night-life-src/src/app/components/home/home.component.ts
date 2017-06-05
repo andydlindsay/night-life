@@ -150,4 +150,26 @@ export class HomeComponent implements OnInit {
     return this.auth.isAuthenticated();
   }
 
+  ratingImageUrl(rating) {
+    let imageUrl = 'https://s3.amazonaws.com/andydlindsay-night-life/yelp/stars/regular_';
+    switch(rating) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+        imageUrl += rating;
+        break;
+      case 1.5:
+      case 2.5:
+      case 3.5:
+      case 4.5:
+        imageUrl += Math.floor(rating) + '_half';
+        break;
+    }
+    imageUrl += '.png';
+    return imageUrl;
+  }
+
 }

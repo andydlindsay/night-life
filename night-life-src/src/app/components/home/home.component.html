@@ -45,21 +45,34 @@
       <md-card>
         <!--<md-card-title>{{ result.name }}</md-card-title>-->
         <md-card-content>
+
           <div class="flex-container overflow-hidden height200">
+
+            <!-- image area -->
             <div id="search-image">
               <img class="search-image" src="{{ result.image_url}}">
             </div>
+
+            <!-- info area -->
             <div id="search-info">
-              <a href="{{ result.url }}" target="_blank"><h2 class="info-title">{{ result.name }}</h2></a>
-              <h3>{{ result.display_phone }}</h3>
-              <h3>{{ result.location.address1 }}, {{ result.location.city }}, {{ result.location.state }}</h3>
-              <h3>Rating: {{ result.rating }} / 5</h3>
+              <a href="{{ result.url }}" target="_blank"><h2 class="info-title margin-bottom-8">{{ result.name }}</h2></a>
+              <h3 class="margin-top-8 margin-bottom-8">{{ result.display_phone }}</h3>
+              <h3 class="margin-top-8 margin-bottom-8">{{ result.location.address1 }}, {{ result.location.city }}, {{ result.location.state }}</h3>
+              <img src="{{ ratingImageUrl(result.rating) }}">
+              <p class="margin-top-0 margin-bottom-8">Based on {{ result.review_count }} Reviews</p>
             </div>
+
+            <!-- button area -->
             <div id="people-going">
-              <h2>0 Going</h2>
+              <h2 class="margin-top-2">0 Going</h2>
               <button md-raised-button color="primary" (click)="onGoingClick(result.id)">I'm Going</button>
+              <a href="{{ result.url }}" target="_blank">
+                <img class="logo" src="https://s3.amazonaws.com/andydlindsay-night-life/yelp/logos/Yelp_trademark_RGB.png">
+              </a>
             </div>
+
           </div>
+
         </md-card-content>
       </md-card>
     </div>
