@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class NavigationComponent implements OnInit {
 
   title: String = 'Goin\' Out!';
-  subtitle: String = 'Get your groove on! Search for bars in your area!';
+  subtitle: String = 'Get your groove on!';
 
   constructor(
     private flashMessage: FlashMessagesService,

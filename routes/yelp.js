@@ -14,12 +14,10 @@ router.get('/search/:location', (req, res) => {
         limit: req.query.itemsperpage,
         offset: skip
     }
-    yelp.accessToken(clientId, clientSecret).then(response => {
-        const client = yelp.client(response.jsonBody.access_token);
-        client.search(searchRequest).then(response => {
-            console.log(response);
-            res.send(response.jsonBody);
-        });
+    const client = yelp.client(process.env.YELP_ACCESS_TOKEN);
+    client.search(searchRequest).then(response => {
+        console.log(response);
+        res.send(response.jsonBody);
     }).catch(e => {
         console.error(e);
     });

@@ -26,11 +26,17 @@ export class HomeComponent implements OnInit {
   searching: boolean = false;
   totalResults: number;
   itemsPerPage: number = 10;
-  currentPage: number;
+  currentPage: number = 1;
 
   ngOnInit() {
     this.titleService.setTitle('Home - Goin\' Out!');
     this.buildForm();
+    this.searchTerm = localStorage.getItem('searchterm');
+    if (this.searchTerm.length > 0) {
+      this.currentPage = Number(localStorage.getItem('currentpage'));
+      localStorage.setItem('currentpage', '1');
+      this.updateSearchResults();
+    }
   }
 
   buildForm() {
@@ -118,15 +124,10 @@ export class HomeComponent implements OnInit {
   onSearchSubmit() {
     // check if search form is valid
     if (this.searchForm.valid) {
-      this.searchTerm = this.searchForm.value.search;
-      // check if user is logged in
-      if (this.isLoggedIn()) {
-        // add search term to user in database
-
-
-
-      }
       this.currentPage = 1;
+      this.searchTerm = this.searchForm.value.search;
+      // store search term in local storage
+      localStorage.setItem('searchterm', this.searchTerm);
       this.updateSearchResults();
     }
   }
@@ -136,14 +137,24 @@ export class HomeComponent implements OnInit {
     // check if user is logged in
     if (this.isLoggedIn()) {
       // update database
-      
+      this.auth.recordGoing(businessId).subscribe(
+        data => {
+          console.log(data);
+          if (data.success) {
+            // record saved successfully
 
-
+          } else {
+            // record not saved
+            
+          }
+        }
+      );
     } else {
+      // store current page
+      localStorage.setItem('currentpage', String(this.currentPage));
       // redirect to login page
       this.auth.login();
     }
-
   }
 
   isLoggedIn() {
@@ -159,13 +170,13 @@ export class HomeComponent implements OnInit {
       case 3:
       case 4:
       case 5:
-        imageUrl += rating;
+        imageUrl += String(rating);
         break;
       case 1.5:
       case 2.5:
       case 3.5:
       case 4.5:
-        imageUrl += Math.floor(rating) + '_half';
+        imageUrl += String(Math.floor(rating)) + '_half';
         break;
     }
     imageUrl += '.png';

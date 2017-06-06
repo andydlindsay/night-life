@@ -87,7 +87,7 @@ md-sidenav-container {
 }
 
 .logo-small {
-    height: 55px;
+    height: 50px;
 }
 
 .mat-input-container {
@@ -182,4 +182,8 @@ md-sidenav-container {
 
 #people-going {
     flex: 1;
+}
+
+#rating-area {
+    padding-top: 8px;
 }

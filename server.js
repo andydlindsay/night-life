@@ -39,6 +39,7 @@ const port = process.env.PORT || 8080;
 
 // routes
 const yelp = require('./routes/yelp');
+const bars = require('./routes/bars');
 
 // use morgan logger except during testing
 if (config.util.getEnv('NODE_ENV') !== 'test') {
@@ -57,6 +58,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use('/api/yelp', yelp);
+app.use('/api/bars', bars);
 
 // server start
 app.listen(port, () => {

@@ -15,7 +15,7 @@
 <div *ngIf="searchResults == undefined && searching == false">
   <md-card>
     <md-card-content>
-      <h2>Enter a city or postal code above to get started!</h2>
+      <h2>Search for bars in your area! Enter a city or postal code above to get started!</h2>
     </md-card-content>
   </md-card>
 </div>
@@ -57,18 +57,24 @@
             <div id="search-info">
               <a href="{{ result.url }}" target="_blank"><h2 class="info-title margin-bottom-8">{{ result.name }}</h2></a>
               <h3 class="margin-top-8 margin-bottom-8">{{ result.display_phone }}</h3>
-              <h3 class="margin-top-8 margin-bottom-8">{{ result.location.address1 }}, {{ result.location.city }}, {{ result.location.state }}</h3>
-              <img src="{{ ratingImageUrl(result.rating) }}">
-              <p class="margin-top-0 margin-bottom-8">Based on {{ result.review_count }} Reviews</p>
+              <h3 class="margin-top-8 margin-bottom-0">{{ result.location.address1 }}, {{ result.location.city }}, {{ result.location.state }}</h3>
+              <div class="flex-container">
+                <div id="rating-area">
+                  <img src="{{ ratingImageUrl(result.rating) }}">
+                  <p class="margin-top-0 margin-bottom-8">Based on {{ result.review_count }} Reviews</p>
+                </div>
+                <div id="logo-area">
+                  <a href="{{ result.url }}" target="_blank">
+                    <img class="logo-small" src="https://s3.amazonaws.com/andydlindsay-night-life/yelp/logos/Yelp_burst_positive_RGB.png">
+                  </a>
+                </div>
+              </div>
             </div>
 
             <!-- button area -->
             <div id="people-going">
-              <h2 class="margin-top-2">0 Going</h2>
+              <h2 class="margin-top-2">0 Going Tonight</h2>
               <button md-raised-button color="primary" (click)="onGoingClick(result.id)">I'm Going</button>
-              <a href="{{ result.url }}" target="_blank">
-                <img class="logo" src="https://s3.amazonaws.com/andydlindsay-night-life/yelp/logos/Yelp_trademark_RGB.png">
-              </a>
             </div>
 
           </div>
