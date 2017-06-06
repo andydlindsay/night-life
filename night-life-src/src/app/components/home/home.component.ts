@@ -105,6 +105,14 @@ export class HomeComponent implements OnInit {
     this.yelp.getBars(this.searchTerm, this.itemsPerPage, this.currentPage).subscribe(
       data => {
         this.searchResults = data.businesses;
+        console.log(this.searchResults);
+        for (let i = 0; i < this.searchResults.length; i++) {
+          this.auth.goingCount(this.searchResults[i].id).subscribe(
+            data => {
+              this.searchResults[i].count = data.count;
+            }
+          );
+        }
         this.totalResults = data.total;
         this.searching = false;
       },
@@ -141,12 +149,12 @@ export class HomeComponent implements OnInit {
         data => {
           console.log(data);
           if (data.success) {
-            // record saved successfully
-
-          } else {
-            // record not saved
-            
-          }
+            // record saved successfully, refresh data
+            this.updateSearchResults();
+          } 
+        },
+        err => {
+          console.error(err);
         }
       );
     } else {

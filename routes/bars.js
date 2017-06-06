@@ -53,5 +53,26 @@ router.get('/isgoing', (req, res) => {
     });
 });
 
+// not going
+router.delete('/going', (req, res) => {
+    const sub = req.query.sub;
+    const business_id = req.query.business_id;
+    Bar.find({
+        sub,
+        business_id,
+        expires_at: {
+            $gte: new Date()
+        }
+    }).remove((err, bar) => {
+        if (err) throw err;
+        res.json({ bar });
+        // if (bar.n == 0) {
+        //     res.json({ 'success': false });
+        // } else {
+        //     res.json({ 'success': true });
+        // }
+    });
+});
+
 // export router
 module.exports = router;

@@ -99,4 +99,10 @@ export class AuthService {
     return this.http.post('http://localhost:8080/api/bars/going', bar, { headers }).map(res => res.json());
   }
 
+  public goingCount(business_id): any {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/api/bars/count/' + business_id).map(res => res.json());
+  }
+
 }
