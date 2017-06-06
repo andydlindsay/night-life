@@ -9,6 +9,6 @@
 
 ### Business information, reviews, and ratings provided by [Yelp](www.yelp.com).
 
-## This project is running on [Heroku](https://andydlindsay-night-life.herokuapp.com)
+### This project is running on [Heroku](https://andydlindsay-night-life.herokuapp.com)
 
-### FreeCodeCamp [assignment](https://www.freecodecamp.com/challenges/build-a-nightlife-coordination-app) and [example](http://whatsgoinontonight.herokuapp.com)
+#### FreeCodeCamp [assignment](https://www.freecodecamp.com/challenges/build-a-nightlife-coordination-app) and [example](http://whatsgoinontonight.herokuapp.com)

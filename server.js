@@ -60,6 +60,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/yelp', yelp);
 app.use('/api/bars', bars);
 
+// catchall redirect
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/index.html'));
+});
+
 // server start
 app.listen(port, () => {
     console.info('Server listening on port %s\n', port);
