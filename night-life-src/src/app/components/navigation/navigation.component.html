@@ -14,7 +14,7 @@
     <div class="app-sidenav">
       <md-nav-list class="title-font">
         <a md-list-item routerLink="/" (click)="start.close()">Home</a>
-        <a *ngIf="isLoggedIn()" md-list-item routerLink="/dashboard" (click)="start.close()">Profile</a>
+        <!--<a *ngIf="isLoggedIn()" md-list-item routerLink="/dashboard" (click)="start.close()">Profile</a>-->
       </md-nav-list>
       <hr>
       <md-nav-list *ngIf="!isLoggedIn()">
