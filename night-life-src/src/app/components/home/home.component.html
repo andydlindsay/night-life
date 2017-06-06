@@ -74,7 +74,11 @@
             <!-- button area -->
             <div id="people-going">
               <h2 class="margin-top-2">{{ result.count }} Going Tonight</h2>
-              <button md-raised-button color="primary" (click)="onGoingClick(result.id)">I'm Going</button>
+              <button *ngIf="!result.going" md-raised-button color="primary" (click)="onGoingClick(result.id)">I'm Going</button>
+              <div *ngIf="result.going">
+                <h2>You are going here tonight!</h2>
+                <button md-raised-button color="accent" (click)="onCancelClick(result.id)">Cancel</button>
+              </div>
             </div>
 
           </div>

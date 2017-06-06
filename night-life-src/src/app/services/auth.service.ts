@@ -73,18 +73,6 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
-  public isGoing(business_id): boolean {
-    // TODO
-
-    return true;
-  }
-
-  public countGoing(business_id): number {
-    // TODO
-
-    return 5;
-  }
-
   public recordGoing(business_id): any {
     let today = new Date();
     const expires_at = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 3, 0, 0, 0);
@@ -100,9 +88,17 @@ export class AuthService {
   }
 
   public goingCount(business_id): any {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:8080/api/bars/count/' + business_id).map(res => res.json());
+  }
+
+  public isGoing(business_id): any {
+    const sub = localStorage.getItem('sub');
+    return this.http.get('http://localhost:8080/api/bars/isGoing?sub=' + sub + '&business_id=' + business_id).map(res => res.json());
+  }
+
+  public notGoing(business_id): any {
+    const sub = localStorage.getItem('sub');
+    return this.http.delete('http://localhost:8080/api/bars/going?sub=' + sub + '&business_id=' + business_id).map(res => res.json());
   }
 
 }

@@ -66,11 +66,6 @@ router.delete('/going', (req, res) => {
     }).remove((err, bar) => {
         if (err) throw err;
         res.json({ bar });
-        // if (bar.n == 0) {
-        //     res.json({ 'success': false });
-        // } else {
-        //     res.json({ 'success': true });
-        // }
     });
 });
 

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   searchResults: any;
   searching: boolean = false;
   totalResults: number;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
   currentPage: number = 1;
 
   ngOnInit() {
@@ -112,6 +112,11 @@ export class HomeComponent implements OnInit {
               this.searchResults[i].count = data.count;
             }
           );
+          this.auth.isGoing(this.searchResults[i].id).subscribe(
+            data => {
+              this.searchResults[i].going = data.going;
+            }
+          );
         }
         this.totalResults = data.total;
         this.searching = false;
@@ -138,6 +143,18 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('searchterm', this.searchTerm);
       this.updateSearchResults();
     }
+  }
+
+  onCancelClick(business_id) {
+    this.auth.notGoing(business_id).subscribe(
+      data => {
+        this.updateSearchResults();
+      },
+      err => {
+        console.error(err);
+      }
+    );
+
   }
 
   onGoingClick(businessId) {
