@@ -73,13 +73,13 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
-  public isGoing(): boolean {
+  public isGoing(business_id): boolean {
     // TODO
 
     return true;
   }
 
-  public countGoing(): number {
+  public countGoing(business_id): number {
     // TODO
 
     return 5;

@@ -19,5 +19,39 @@ router.post('/going', (req, res) => {
     });
 });
 
+// count going
+router.get('/count/:business_id', (req, res) => {
+    const business_id = req.params.business_id;
+    // res.json({ business_id });
+    Bar.count({
+        business_id,
+        expires_at: {
+            $gte: new Date()
+        } 
+    }, (err, count) => {
+        res.json({ count });
+    });
+});
+
+// is user going
+router.get('/isgoing', (req, res) => {
+    const sub = req.query.sub;
+    const business_id = req.query.business_id;
+    // res.json({ sub, business_id });
+    Bar.findOne({
+        business_id,
+        sub,
+        expires_at: {
+            $gte: new Date()
+        }
+    }, (err, bar) => {
+        if (bar == null) {
+            res.json({ 'going': false });
+        } else {
+            res.json({ 'going': true });
+        }
+    });
+});
+
 // export router
 module.exports = router;
