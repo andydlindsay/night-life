@@ -84,21 +84,21 @@ export class AuthService {
     console.log('bar', bar)
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/bars/going', bar, { headers }).map(res => res.json());
+    return this.http.post('/api/bars/going', bar, { headers }).map(res => res.json());
   }
 
   public goingCount(business_id): any {
-    return this.http.get('http://localhost:8080/api/bars/count/' + business_id).map(res => res.json());
+    return this.http.get('/api/bars/count/' + business_id).map(res => res.json());
   }
 
   public isGoing(business_id): any {
     const sub = localStorage.getItem('sub');
-    return this.http.get('http://localhost:8080/api/bars/isGoing?sub=' + sub + '&business_id=' + business_id).map(res => res.json());
+    return this.http.get('/api/bars/isGoing?sub=' + sub + '&business_id=' + business_id).map(res => res.json());
   }
 
   public notGoing(business_id): any {
     const sub = localStorage.getItem('sub');
-    return this.http.delete('http://localhost:8080/api/bars/going?sub=' + sub + '&business_id=' + business_id).map(res => res.json());
+    return this.http.delete('/api/bars/going?sub=' + sub + '&business_id=' + business_id).map(res => res.json());
   }
 
 }
