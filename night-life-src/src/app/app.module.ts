@@ -43,6 +43,7 @@ const appRoutes: Routes = [
     FlexLayoutModule
   ],
   providers: [
+    Title,
     AuthService,
     YelpService
   ],
